@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================= GLOBAL ================= */
+:root {
+  --gold: #c6a96b;
+  --gold-soft: #f3e2b3;
+  --bg-dark: #0b0b0b;
+  --bg-deep: #050505;
+}
+
+body {
+  background: radial-gradient(circle at 75% 25%, #1a140c 0%, #050505 70%);
+  color: var(--gold-soft);
+  font-family: Inter, sans-serif;
+  overflow-x: hidden;
+}
+
+/* CINEMATIC VIGNETTE */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.9));
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ================= TYPOGRAPHY ================= */
+.font-display {
+  font-family: "Playfair Display", serif;
+  letter-spacing: -0.02em;
+}
+
+.gold-text {
+  background: linear-gradient(120deg, #f8e7b5, #c6a96b 50%, #7a5c2e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(198,169,107,0.25);
+}
+
+/* ================= BUTTON ================= */
+.btn-gold {
+  position: relative;
+  border: 1px solid rgba(198,169,107,0.5);
+  padding: 12px 22px;
+  color: var(--gold-soft);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.btn-gold:hover {
+  background: rgba(198,169,107,0.1);
+  box-shadow: 0 0 20px rgba(198,169,107,0.2);
+}
+
+.btn-gold::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 0 30px rgba(198,169,107,0.15);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.btn-gold:hover::before {
+  opacity: 1;
+}
