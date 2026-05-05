@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import StepProgress from "../components/StepProgress";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,36 +13,36 @@ export default function Chapter() {
   useEffect(() => {
     const ctx = gsap.context(() => {
 
-      // TEXT REVEAL
+      // TEXT
       gsap.fromTo(
         contentRef.current,
-        { opacity: 0, y: 80 },
+        { opacity: 0, y: 60 },
         {
           opacity: 1,
           y: 0,
-          ease: "power3.out",
+          ease: "power1.inOut",
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top 80%",
-            end: "top 40%",
-            scrub: true,
+            end: "bottom 60%",
+            scrub: 0.6,
           },
         }
       );
 
-      // IMAGE PARALLAX + SCALE
+      // IMAGE
       gsap.fromTo(
         imageRef.current,
-        { scale: 0.2, opacity: 0 },
+        { scale: 0.8, opacity: 0 },
         {
           scale: 1,
           opacity: 1,
-          ease: "none",
+          ease: "power1.inOut",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 90%",
-            end: "top 30%",
-            scrub: true,
+            start: "top 85%",
+            end: "bottom 50%",
+            scrub: 1,
           },
         }
       );
@@ -54,60 +55,67 @@ export default function Chapter() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen w-full bg-[#0b0b0b] flex items-center px-24 relative overflow-hidden"
+      className="relative w-full min-h-screen bg-[#0b0b0b] overflow-hidden
+      flex items-center px-6 sm:px-10 lg:px-24 py-16"
     >
-
-      {/* LIGHT GLOW (same style as hero) */}
+      {/* LIGHT */}
       <div className="hero-light opacity-40" />
 
-      <div className="flex justify-between items-center gap-20">
+      {/* CONTENT */}
+      <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full">
 
-        {/* LEFT TEXT */}
+        {/* ================= TEXT ================= */}
         <div
           ref={contentRef}
-          className="max-w-xl z-10"
+          className="w-full lg:w-2/5 max-w-xl z-10 text-center lg:text-left"
         >
           <p className="text-xs text-gray-500 mb-3 tracking-widest">
             CHAPTER I
           </p>
 
-          <h2 className="text-5xl font-display mb-6">
+          <h2 className="font-display mb-6 
+            text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
             The Challenge
           </h2>
 
-          <p className="text-gray-400 mb-8 leading-relaxed">
+          <p className="text-gray-400 mb-8 leading-relaxed 
+            text-sm sm:text-base md:text-lg">
             Ministries were never meant to struggle with spreadsheets,
             disconnected tools, and scattered information. Yet too much
             time is lost managing systems instead of fulfilling the mission.
           </p>
 
-          <button className="btn-gold">
+          <button className="btn-gold w-full sm:w-auto">
             See the Problem →
           </button>
         </div>
 
-        {/* RIGHT IMAGE (OPEN BOOK) */}
+        {/* ================= IMAGE ================= */}
         <div
-            ref={imageRef}
-            className="relative w-[900px] h-[650px] rounded-xl overflow-hidden"
-            >
-            {/* IMAGE */}
-            <div
-                className="absolute inset-0 bg-center bg-cover"
-                style={{
-                backgroundImage: "url('/Chapter.png')",
-                }}
-            />
+          ref={imageRef}
+          className="relative w-full lg:w-2/5
+          h-[260px] sm:h-[350px] md:h-[450px] lg:h-[600px]
+          rounded-xl overflow-hidden"
+        >
+          <div
+            className="absolute inset-0 bg-center bg-cover"
+            style={{ backgroundImage: "url('/Chapter.png')" }}
+          />
 
-            {/* GOLD GLOW */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,200,120,0.25),transparent_70%)]" />
+          <div className="absolute inset-0 
+            bg-[radial-gradient(circle_at_center,rgba(255,200,120,0.25),transparent_70%)]" />
 
-            {/* SHADOW DEPTH */}
-            <div className="absolute inset-0 shadow-[0_40px_120px_rgba(0,0,0,0.8)]" />
+          <div className="absolute inset-0 
+            shadow-[0_40px_120px_rgba(0,0,0,0.8)]" />
 
-            {/* VIGNETTE */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40" />
-            </div>
+          <div className="absolute inset-0 
+            bg-gradient-to-t from-black/70 via-transparent to-black/40" />
+        </div>
+
+        {/* ================= STEP PROGRESS ================= */}
+        <div className="w-full lg:w-1/5 flex justify-center lg:justify-end">
+          <StepProgress />
+        </div>
 
       </div>
     </section>

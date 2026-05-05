@@ -15,6 +15,24 @@ body {
   color: var(--gold-soft);
   font-family: Inter, sans-serif;
   overflow-x: hidden;
+
+  /* ✅ Mobile readability */
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* TABLET */
+@media (min-width: 640px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+  body {
+    font-size: 16px;
+  }
 }
 
 /* CINEMATIC VIGNETTE */
@@ -22,7 +40,7 @@ body::after {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.9));
+  background: radial-gradient(circle, transparent 55%, rgba(0,0,0,0.9));
   pointer-events: none;
   z-index: 0;
 }
@@ -31,6 +49,20 @@ body::after {
 .font-display {
   font-family: "Playfair Display", serif;
   letter-spacing: -0.02em;
+}
+
+/* ✅ Responsive heading scaling */
+h1 {
+  font-size: clamp(2.2rem, 6vw, 6rem);
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+}
+
+p {
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
 }
 
 .gold-text {
@@ -47,10 +79,24 @@ body::after {
 .btn-gold {
   position: relative;
   border: 1px solid rgba(198,169,107,0.5);
-  padding: 12px 22px;
+  padding: 10px 16px;
   color: var(--gold-soft);
   transition: all 0.3s ease;
   overflow: hidden;
+
+  /* ✅ Mobile-friendly */
+  font-size: 0.85rem;
+  width: 100%;
+  text-align: center;
+}
+
+/* TABLET+ */
+@media (min-width: 640px) {
+  .btn-gold {
+    padding: 12px 22px;
+    font-size: 0.95rem;
+    width: auto;
+  }
 }
 
 .btn-gold:hover {
@@ -69,4 +115,20 @@ body::after {
 
 .btn-gold:hover::before {
   opacity: 1;
+}
+/* Prevent navbar overlap */
+section {
+  padding-top: 80px;
+}
+
+/* Better on mobile */
+@media (max-width: 640px) {
+  section {
+    padding-top: 70px;
+  }
+}
+
+/* Safe area (iPhone notch fix) */
+body {
+  padding-top: env(safe-area-inset-top);
 }

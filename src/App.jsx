@@ -1,10 +1,11 @@
 import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
 import Chapter from "./sections/Chapter";
-// import System from "./sections/System";
-// import HowItWorks from "./sections/HowItWorks";
 
 import ScrollStack, { ScrollStackItem } from "./components/ScrollStack";
+import ChapterTwo from "./sections/ChapterTwo";
+
+
 
 export default function App() {
   return (
@@ -20,16 +21,8 @@ export default function App() {
         <ScrollStackItem>
           <Chapter />
         </ScrollStackItem>
-
-        {/* <ScrollStackItem>
-          <System />
-        </ScrollStackItem>
-
-        <ScrollStackItem>
-          <HowItWorks />
-        </ScrollStackItem> */}
-
       </ScrollStack>
+      <ChapterTwo/>
     </div>
   );
 }
